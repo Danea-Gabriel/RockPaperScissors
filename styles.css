@@ -139,17 +139,11 @@ cursor: pointer;
     text-shadow: 0px 0px 10px orange, 0px 0px 20px orange, 0px 0px 40px orange, 0px 0px 80px orange, 0px 0px 160px orange;
 }
 
-.btn-calling{
-    width: 100px;
-    color:rgb(255, 246, 228);
-    text-shadow: 0px 0px 10px orange, 0px 0px 20px orange, 0px 0px 40px orange, 0px 0px 80px orange, 0px 0px 160px orange;
-    background-color: rgb(0, 255, 42);
-    
-}
 
 
 
 
+/* Credit PEN IO*/
 .coccoc-alo-ph-circle {
     width: 160px;
     height: 160px;
@@ -476,4 +470,25 @@ cursor: pointer;
     100% {
         transform: rotate(0) scale(1) skew(1deg)
     }
+}
+
+/* Credit PEN IO*/
+
+.modal-header{
+    background-color: #000000;
+
+}
+.modal-body{
+    background-color: #0e0a0b;
+    border: 1px solid #EAC139;
+    border-radius: 3px;
+    color: orange;
+    padding: 0.75rem;
+    text-shadow: 0px 0px 10px orange, 0px 0px 20px orange, 0px 0px 40px orange, 0px 0px 80px orange, 0px 0px 160px orange;
+
+    
+}
+
+.modal-footer{
+    background-color: #0e0a0b;
 }

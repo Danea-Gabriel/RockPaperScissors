@@ -2,6 +2,18 @@ const possibilities = ['rock', 'paper', 'scissors'];
 let userScore = 0;
 let computerScore = 0;
 
+const rockBtn = document.querySelector('#rock-choosed');
+const paperBtn = document.querySelector('#paper-choosed');
+const scissorsBtn = document.querySelector('#scissors-choosed');
+const userCurentScore = document.querySelector('#user-score');
+const computerCurentScore = document.querySelector('#computer-score');
+const roundResult = document.querySelector('#result-for-the-round');
+const showHandPlayer = document.querySelector('#card-score-player');
+const showHandComputer = document.querySelector('#card-score-computer');
+const telephone = document.querySelector('#telephone');
+const audio = new Audio('cp77_call_tone.mp3');
+telephone.style.visibility = 'hidden'; // de pus in css
+
 const appendClassForComputer  = (computer) =>{
     if (computer === 'rock'){
         showHandComputer.className = 'showHand fa-regular fa-hand-back-fist ' ;
@@ -44,10 +56,10 @@ const cheatHard = (computer, player)=>{
 }
 const checkWinner  = (player) => {
    let computer = possibilities[Math.floor(Math.random() * possibilities.length)];
-//    if(userScore < computerScore){
-//     player = cheatHard(computer, player);
+   if(userScore+1 < computerScore){
+    player = cheatHard(computer, player);
 
-//    }
+   }
    appendClassForComputer(computer);
    appendClassForPlayer(player);
     if(player =='rock' && computer ==='scissors'){
@@ -64,6 +76,13 @@ const checkWinner  = (player) => {
         return 'tie';
     }
     else return false;
+}
+const talkWithV = () =>{
+  
+    if (userScore+1 < computerScore){
+       telephone.style.visibility = 'visible';
+       audio.play();
+   }
 }
 
 const play = (player) =>{
@@ -82,27 +101,31 @@ else if (check === true){
 else {
     roundResult.textContent = " YOU LOST!";
     computerScore ++;
+    if(computerScore <=4){
+    talkWithV();
+    }
     computerCurentScore.textContent = computerScore;}
 }
 
-const rockBtn = document.querySelector('#rock-choosed');
-const paperBtn = document.querySelector('#paper-choosed');
-const scissorsBtn = document.querySelector('#scissors-choosed');
-const userCurentScore = document.querySelector('#user-score');
-const computerCurentScore = document.querySelector('#computer-score');
-const roundResult = document.querySelector('#result-for-the-round');
-const showHandPlayer = document.querySelector('#card-score-player');
-const showHandComputer = document.querySelector('#card-score-computer');
-const telephone = document.querySelector('#telephone');
-const audio = new Audio('cp77_call_tone.mp3');
 
-const talkWithV = () =>{
-    if (userScore === computerScore){
-        telephone.style.visibility = 'hidden';
+
+
+
+const checkBigWinner = () =>{
+    if(userScore === 5){
+        roundResult.textContent = "Congrats!!!";
+        userScore = 0;
+        computerScore = 0;
+        userCurentScore.textContent = userScore;
+        computerCurentScore.textContent = computerScore;
+       
     }
-    else if (userScore < computerScore+1){
-        telephone.style.visibility = 'visible';
-        audio.play();
+    else if(computerScore ===5){
+        roundResult.textContent = "Failure!!!";
+        userScore = 0;
+        computerScore = 0;
+        userCurentScore.textContent = userScore;
+        computerCurentScore.textContent = computerScore;
     }
 }
 
@@ -111,22 +134,22 @@ audio.pause();
 telephone.style.visibility = 'hidden';
 
 });
-talkWithV();
+
 rockBtn.addEventListener('click',function(){
-    play('rock');
-talkWithV();
+play('rock');
+checkBigWinner();
 
     
 });
 paperBtn.addEventListener('click',function(){
     play('paper');
-talkWithV();
+checkBigWinner();
+
 
  
 });
 scissorsBtn.addEventListener('click',function(){
     play('scissors');
-talkWithV();
+checkBigWinner();
 
-  
 });
